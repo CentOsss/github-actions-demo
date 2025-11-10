@@ -1,17 +1,14 @@
-name: Azure Python Multi-Version
+name: Azure Python 3.14.0
 on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.12.12, 3.14.0]
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+    - name: Set up Python 3.14.0
+      uses: actions/setup-python@v1
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: 3.14.0
     - name: Install dependencies
       run: |
         make install
@@ -21,5 +18,3 @@ jobs:
     - name: Test
       run: |
         make test
-
-
